@@ -1,9 +1,12 @@
 package com.kveola13.hibernation;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Name {
     private String firstName;
-    private String lastName;
     private String middleName;
+    private String lastName;
 
     public String getFirstName() {
         return firstName;
@@ -13,20 +16,20 @@ public class Name {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getMiddleName() {
         return middleName;
     }
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
