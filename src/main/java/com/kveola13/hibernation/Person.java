@@ -1,9 +1,8 @@
 package com.kveola13.hibernation;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "people")
 public class Person {
@@ -12,8 +11,8 @@ public class Person {
     private int id;
     private Name name;
     private String nationality;
-    @OneToOne
-    private Nation nation;
+    @OneToMany
+    private List<Nation> nation = new ArrayList<Nation>();
 
     public int getId() {
         return id;
@@ -39,11 +38,11 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public Nation getNation() {
+    public List<Nation> getNation() {
         return nation;
     }
 
-    public void setNation(Nation nation) {
+    public void setNation(List<Nation> nation) {
         this.nation = nation;
     }
 

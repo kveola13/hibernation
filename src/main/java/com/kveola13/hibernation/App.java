@@ -7,6 +7,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         Nation norwayNation = new Nation();
@@ -24,7 +27,7 @@ public class App {
         person.setId(1);
         person.setName(name);
         person.setNationality("Norwegian");
-        person.setNation(norwayNation);
+        person.getNation().add(norwayNation);
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class).addAnnotatedClass(Nation.class);
 
