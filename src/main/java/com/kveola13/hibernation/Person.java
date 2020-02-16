@@ -8,7 +8,7 @@ public class Person {
 
     @Id
     private int id;
-    private String name;
+    private Name name;
     private String nationality;
 
     public int getId() {
@@ -19,11 +19,11 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 

@@ -9,10 +9,14 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 public class App {
     public static void main(String[] args) {
+        Name name = new Name();
+        name.setFirstName("Normie");
+        name.setMiddleName("Nowegian");
+        name.setLastName("Norway");
         Person person = new Person();
-        /*person.setId(103);
-        person.setName("Normie Norwegian");
-        person.setNationality("Norwegian");*/
+        person.setId(103);
+        person.setName(name);
+        person.setNationality("Norwegian");
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class);
 
@@ -21,10 +25,8 @@ public class App {
         SessionFactory sessionFactory = configuration.buildSessionFactory(registry);
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-//        session.save(person);
-        person = (Person) session.get(Person.class, 102);
+        session.save(person);
+//        person = (Person) session.get(Person.class, 102);
         transaction.commit();
-
-        System.out.println(person);
     }
 }
