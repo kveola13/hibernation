@@ -23,20 +23,31 @@ public class App {
         name.setMiddleName("Norwege");
         name.setLastName("Noreg");
 
+        University university = new University();
+        university.setId(1);
+        university.setName("UiO");
+        university.setLocation("Norway");
+
         Person person = new Person();
         person.setId(1);
         person.setName(name);
         person.setNationality("Norwegian");
         person.getNation().add(norwayNation);
+        person.setUniversity(university);
 
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class).addAnnotatedClass(Nation.class);
+        Configuration configuration = new Configuration().configure()
+                .addAnnotatedClass(Person.class)
+                .addAnnotatedClass(Nation.class)
+                .addAnnotatedClass(University.class);
 
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new ServiceRegistryBuilder()
+                .applySettings(configuration.getProperties()).buildServiceRegistry();
 
         SessionFactory sessionFactory = configuration.buildSessionFactory(registry);
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(norwayNation);
+        session.save(university);
         session.save(person);
 //        person = (Person) session.get(Person.class, 102);
 //        session.getTransaction().commit();

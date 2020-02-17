@@ -11,6 +11,8 @@ public class Person {
     private int id;
     private Name name;
     private String nationality;
+    @OneToOne
+    private University university;
     @OneToMany
     private List<Nation> nation = new ArrayList<Nation>();
 
@@ -36,6 +38,14 @@ public class Person {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
     }
 
     public List<Nation> getNation() {
