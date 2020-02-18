@@ -1,10 +1,15 @@
 package com.kveola13.hibernation;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "people")
+@Cacheable
+@Cache(usage= CacheConcurrencyStrategy.READ_ONLY)
 public class Person {
 
     @Id

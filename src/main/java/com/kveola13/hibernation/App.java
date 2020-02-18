@@ -50,22 +50,30 @@ public class App {
 
         ServiceRegistry registry = new ServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).buildServiceRegistry();
-
         SessionFactory sessionFactory = configuration.buildSessionFactory(registry);
         Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+
+        session.beginTransaction();
         session.save(norwayNation);
         session.save(belgiumNation);
         session.save(university);
         session.save(person);
-        /*person = (Person) session.get(Person.class, 1);
-        System.out.println(person.getName());
+        person = (Person) session.get(Person.class, 1);
+        System.out.println(person);
+        session.getTransaction().commit();
+        session.close();
+        Session secondSession = sessionFactory.openSession();
+        secondSession.beginTransaction();
+        Person secondPerson = (Person) secondSession.get(Person.class, 1);
+        System.out.println(secondPerson);
+/*        System.out.println(person.getName());
         Collection<Nation> nations = person.getNation();
 
         for (Nation nation: nations){
             System.out.println(nation.toString());
         }*/
-        session.getTransaction().commit();
+        secondSession.getTransaction().commit();
 //        transaction.commit();
+        secondSession.close();
     }
 }
