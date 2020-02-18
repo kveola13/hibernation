@@ -13,7 +13,7 @@ public class Person {
     private String nationality;
     @OneToOne
     private University university;
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
     private List<Nation> nation = new ArrayList<Nation>();
 
     public int getId() {

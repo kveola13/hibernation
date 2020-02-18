@@ -54,4 +54,9 @@ public class Nation {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Nation: " + name;
+    }
 }

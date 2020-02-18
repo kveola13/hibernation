@@ -8,6 +8,8 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class App {
@@ -18,6 +20,11 @@ public class App {
         norwayNation.setContinent("Europe");
         norwayNation.setNationalLanguage("Norwegian");
 
+        Nation belgiumNation = new Nation();
+        belgiumNation.setId(2);
+        belgiumNation.setName("Belgium");
+        belgiumNation.setContinent("Europe");
+        belgiumNation.setNationalLanguage("French");
 
         Name name = new Name();
         name.setFirstName("Norman");
@@ -33,7 +40,7 @@ public class App {
         person.setId(1);
         person.setName(name);
         person.setNationality("Norwegian");
-        person.getNation().add(norwayNation);
+        person.getNation().addAll(Arrays.asList(norwayNation, belgiumNation));
         person.setUniversity(university);
 
         Configuration configuration = new Configuration().configure()
@@ -48,10 +55,17 @@ public class App {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(norwayNation);
+        session.save(belgiumNation);
         session.save(university);
         session.save(person);
-//        person = (Person) session.get(Person.class, 102);
-//        session.getTransaction().commit();
-        transaction.commit();
+        /*person = (Person) session.get(Person.class, 1);
+        System.out.println(person.getName());
+        Collection<Nation> nations = person.getNation();
+
+        for (Nation nation: nations){
+            System.out.println(nation.toString());
+        }*/
+        session.getTransaction().commit();
+//        transaction.commit();
     }
 }
