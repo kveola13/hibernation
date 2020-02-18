@@ -18,6 +18,7 @@ public class App {
         norwayNation.setContinent("Europe");
         norwayNation.setNationalLanguage("Norwegian");
 
+
         Name name = new Name();
         name.setFirstName("Norman");
         name.setMiddleName("Norwege");

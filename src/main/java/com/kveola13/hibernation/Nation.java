@@ -2,6 +2,7 @@ package com.kveola13.hibernation;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "nation")
 public class Nation {
@@ -11,6 +12,8 @@ public class Nation {
     private String name;
     private String continent;
     private String nationalLanguage;
+    @ManyToOne
+    private Person person;
 
     public int getId() {
         return id;
@@ -42,5 +45,13 @@ public class Nation {
 
     public void setNationalLanguage(String nationalLanguage) {
         this.nationalLanguage = nationalLanguage;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
