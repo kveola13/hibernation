@@ -1,5 +1,6 @@
 package com.kveola13.hibernation;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -58,14 +59,18 @@ public class App {
         session.save(belgiumNation);
         session.save(university);
         session.save(person);
-        person = (Person) session.get(Person.class, 1);
+        Query query = session.createQuery("from people where id=1");
+        query.setCacheable(true);
+        person = (Person) query.uniqueResult();
         System.out.println(person);
         session.getTransaction().commit();
         session.close();
         Session secondSession = sessionFactory.openSession();
         secondSession.beginTransaction();
-        Person secondPerson = (Person) secondSession.get(Person.class, 1);
-        System.out.println(secondPerson);
+        Query secondQuery = secondSession.createQuery("from people where id=1");
+        secondQuery.setCacheable(true);
+        person = (Person) secondQuery.uniqueResult();
+        System.out.println(person);
 /*        System.out.println(person.getName());
         Collection<Nation> nations = person.getNation();
 
